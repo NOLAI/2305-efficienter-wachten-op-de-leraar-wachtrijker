@@ -1,0 +1,141 @@
+{% extends 'wachtrijker/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+  <div class="row justify-content-center m-3">
+    <div class="col ps-0">
+      <div class="card chat-card">
+        <div class="card-body">
+          <div id="chat-box" scrolled="0">
+            <div id="chat-messages">
+              {% for message in chat_messages %}
+              <div class="d-flex flex-row position-relative message {% if message.user == "U" %}justify-content-end{% else %}justify-content-start{% endif %}">
+                <div class="message-container p-3">
+                  <div class="message-content small mb-0">{{ message.text }}</div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="w-100">
+            <hr>
+
+            <form id="chat-send-message" class="row" accept-charset="UTF-8">
+              <div class="col">
+                <textarea class="form-control" type="text" name="question" rows="2" placeholder="{% trans "Typ hier je vraag" %}" autocomplete="off" required></textarea>
+              </div>
+              <div class="col-auto m-auto ps-0">
+                <button class="btn btn-primary" type="submit">{% trans "Verstuur" %} <i class="bi bi-send"></i></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-auto p-0">
+      <div id="ask-question-card" class="card{% if score.complete %} has-success{% endif %}">
+        <div class="card-body">
+          <form id="ask-question" action="{% url "ask" chat_session %}" method="POST" accept-charset="UTF-8">
+            {% csrf_token %}
+            <b>{% trans "Dit is de samenvatting van de vraag" %} <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-title="{% trans "Deze samenvatting wordt uiteindelijk aan je docent gesteld, zo hoef je dat zelf niet meer te doen!" %}"></i></b>
+
+            <div class="mb-3">
+              <textarea class="form-control" type="text" name="question" rows="8" disabled>{% if score %}{{ score.summary }}{% endif %}</textarea>
+              <div class="d-grid gap-2">
+                <button class="btn btn-secondary btn-sm{% if not score %} d-none{% endif %}" type="button" name="edit">{% trans "Aanpassen" %}</button>
+              </div>
+            </div>
+
+            <table id="question-scores" class="mb-2">
+              <thead>
+                <tr>
+                  <th class="pe-3">{% trans "Categorie" %}</th>
+                  <th>{% trans "Score" %}</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for field, score, description in fields %}
+                <tr data-bs-toggle="tooltip" data-bs-title="{{ description }}">
+                  <td>{{ field }}</td>
+                  <td>
+                    <i class="bi bi-1-circle{% if score == 1 %}-fill{% endif %}"></i>
+                    <i class="bi bi-2-circle{% if score == 2 %}-fill{% endif %}"></i>
+                    <i class="bi bi-3-circle{% if score == 3 %}-fill{% endif %}"></i>
+                    <i class="bi bi-4-circle{% if score == 4 %}-fill{% endif %}"></i>
+                    <i class="bi bi-5-circle{% if score == 5 %}-fill{% endif %}"></i>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+
+            <div class="form-check form-switch pb-2">
+              <input class="form-check-input" type="checkbox" role="switch" id="questionPublic" name="public" checked>
+              <label class="form-check-label" for="questionPublic">{% trans "Mag je vraag publiek zijn voor anderen?" %}</label>
+            </div>
+
+            <div class="col">
+              <button class="btn btn-{% if not score or not score.complete %}secondary{% else %}primary{% endif %}" type="button" {% if not score %}disabled="disabled"{% endif %} name="ask">{% trans "Vraag dit" %} <i class="bi bi-person-raised-hand"></i></button>
+              <button class="btn btn-secondary" type="button" name="restart" value="restart" {% if not score %}disabled="disabled"{% endif %}>{% trans "Opnieuw beginnen" %} <i class="bi bi-arrow-counterclockwise"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="question-incomplete-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{% trans "Je vraag is incompleet" %}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans "Sluiten" %}"></button>
+        </div>
+        <div class="modal-body">
+          {% trans "Je vraag is nog niet volledig goedgekeurd. Als je denkt dat je vraag goed genoeg is, kun je het aan de wachtrij toevoegen. Zo niet, kan de docent de vraag alsnog afwijzen." %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Sluiten" %}</button>
+          <button type="button" class="btn btn-primary" name="ask" value="incomplete">{% trans "Alsnog vragen" %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="question-restart-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{% trans "Opnieuw beginnen" %}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans "Sluiten" %}"></button>
+        </div>
+        <div class="modal-body">
+          {% trans "Is je huidige vraag al beantwoord? Of wil je gewoon opnieuw beginnen?" %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" name="restart" value="answered">{% trans "Is al beantwoord" %}</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" name="restart" value="restart">{% trans "Opnieuw beginnen" %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="question-edit-modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{% trans "Vraag aanpassen" %}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans "Sluiten" %}"></button>
+        </div>
+        <div class="modal-body">
+          {% trans "Je kunt je vraag handmatig aanpassen als je vind dat de samenvatting niet goed genoeg is. Als je dit doet kan je docent er wel alsnog voor kiezen je vraag af te wijzen als deze niet goed genoeg is." %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Sluiten" %}</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" name="edit">{% trans "Aanpassen" %}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block javascript %}
+  <script src="{% static "wachtrijker/chat.js" %}"></script>
+{% endblock %}

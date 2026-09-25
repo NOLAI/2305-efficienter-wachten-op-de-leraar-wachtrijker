@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wachtrijker</title>
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <link rel="shortcut icon" type="image/svg+xml" href="{% static "wachtrijker/logo_filled.svg" %}"/>
+  <link rel="stylesheet" href="{% static "bootstrap/dist/css/bootstrap.css" %}">
+  <link rel="stylesheet" href="{% static "bootstrap-icons/font/bootstrap-icons.min.css" %}">
+  <link rel="stylesheet" href="{% static "wachtrijker/chat.css" %}">
+  {% block header %}
+  {% endblock %}
+</head>
+<body>
+  <div class="content flex-grow-1">
+    <div class="card header m-3">
+      <div class="card-body logo py-2">
+        <a href="{% url "index" %}">
+          <img src="{% static "wachtrijker/logo_filled.svg" %}" alt="Wachtrijker" /> <span>Wachtrijker</span>
+        </a>
+        <span class="badge rounded-pill text-bg-primary">beta</span>
+        <a href="https://ta-help.me">
+          <img class="float-end" src="{% static "wachtrijker/logo_large_color.svg" %}" alt="TA-Help.me" />
+        </a>
+      </div>
+    </div>
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mx-3">
+          {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+        </div>
+      {% endfor %}
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+  </div>
+  <script src="{% static "jquery/dist/jquery.js" %}"></script>
+  <script src="{% static "@popperjs/core/dist/umd/popper.min.js" %}"></script>
+  <script src="{% static "bootstrap/dist/js/bootstrap.js" %}"></script>
+  {% block javascript %}
+  {% endblock %}
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'wachtrijker/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+  <div class="content flex-grow-1">
+    <div class="card m-3">
+      <div class="card-body py-2">
+        {% if not question %}
+          {% trans "Welkom!" %}
+        {% else %}
+          {% trans "Je vraag is: " %} {{ question }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

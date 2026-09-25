@@ -1,0 +1,107 @@
+body {
+    background-color: #ecedee;
+}
+textarea {
+    resize: none;
+}
+.card {
+    background-color: #f2f1f4;
+}
+.logo {
+    img {
+        height: 40px;
+    }
+
+    a {
+        font-family: Verdana, sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    span {
+        vertical-align: middle;
+    }
+}
+.content {
+    min-width: 1000px;
+}
+.chat-card,
+#ask-question-card {
+    height: 488px;
+}
+#ask-question-card {
+    min-width: 385px;
+}
+.chat-card {
+    .message.justify-content-end {
+        padding-right: 15px;
+    }
+    .card-body {
+        max-height: 100%;
+        display: flex;
+        flex-flow: column;
+    }
+}
+.card.has-success {
+    background-color: #d4e7d3;
+}
+#chat-box {
+    flex-grow: 1;
+    overflow-y: scroll;
+    margin-right: -15px;
+}
+#chat-send-message button {
+    height: 55px;
+}
+.message-container {
+    max-width: 75%;
+    border-radius: 15px;
+}
+.message:not(:last-child) {
+    margin-bottom: 5px;
+}
+.message-content {
+    white-space: pre-wrap;
+}
+#ask-question .btn-sm {
+    --bs-btn-padding-y: 0.0rem;
+    --bs-btn-font-size: 0.875rem;
+    margin-top: -23px;
+}
+.justify-content-start .message-container {
+    border: 1px solid rgba(57, 192, 237, 0.2);
+    background-color: rgba(57, 192, 237, 0.2);
+}
+.justify-content-end .message-container {
+    border: 1px solid #dee2e6;
+}
+.btn-primary,
+.btn-primary:disabled {
+    background-color: hsl(190, 100%, 30%);
+    color: #FFFFFF;
+    border: none;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: hsl(190, 100%, 20%) !important;
+    color: #FFFFFF;
+    border: none;
+}
+.form-control,
+.form-control:focus,
+.form-control:disabled,
+.form-control[read-only] {
+    font-size: 0.875rem;
+    background-color: #ecedee;
+    border: 1px solid #ccc;
+}
+.text-bg-primary {
+    background-color: hsl(190, 100%, 30%) !important;
+}
+th:not(:first-child),
+td:not(:first-child) {
+  padding-left: 15px;
+}

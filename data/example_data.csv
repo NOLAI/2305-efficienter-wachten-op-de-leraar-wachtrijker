@@ -1,0 +1,51 @@
+text,context,problem,goal,attempts,terminology
+help,1,1,1,1,1
+werkt niet,1,1,1,1,1
+ik snap er niks van,1,1,2,1,1
+mn code doet raar,2,1,1,1,2
+python werkt niet meer,2,1,1,1,2
+ik loop vast bij opdracht 3,2,2,1,1,1
+foutmelding,1,2,1,1,2
+help ik heb een error,2,2,1,1,2
+mijn programma crasht steeds,2,2,1,1,2
+het lukt me niet om de opdracht te maken,2,1,2,1,1
+ik krijg een syntax error maar snap niet waarom,2,3,2,1,3
+mijn loop stopt niet ik snap niet hoe dat komt,3,3,2,2,3
+waarom werkt mijn if statement niet,2,3,2,1,3
+ik wil een lijst sorteren maar het lukt niet,2,3,3,2,2
+hoe maak ik een functie in python,2,2,3,1,3
+mijn variabele is steeds none na de functie,3,3,2,2,3
+ik krijg indexerror list index out of range bij mijn for loop,3,4,2,2,4
+waarom print mijn code de verkeerde uitkomst,3,3,3,2,2
+ik probeer een getal in te lezen maar krijg een typeerror,3,4,2,2,4
+mijn while loop blijft oneindig doorgaan wat doe ik fout,3,4,3,3,3
+hoe kan ik controleren of een getal even is in python,2,3,3,2,3
+ik snap het verschil tussen == en = niet goed,3,3,3,2,4
+mijn functie geeft niks terug terwijl ik wel iets wil printen,3,4,3,3,3
+hoe roep ik een functie aan met een argument,2,3,3,1,3
+ik wil de gemiddelde score berekenen maar mijn deling klopt niet,3,4,3,2,3
+bij opdracht 4 moet ik een lijst omdraaien maar ik weet niet hoe,3,3,4,2,3
+mijn code werkt in de les maar thuis krijg ik een modulenotfounderror,4,4,3,3,4
+ik wil input van de gebruiker opslaan in een lijst maar het overschrijft steeds,4,4,3,3,4
+waarom geeft mijn nested loop te veel resultaten terug,4,4,3,3,4
+ik krijg unindent does not match error en snap de inspringing niet,3,4,3,2,4
+hoe kan ik een string omzetten naar een integer voor mijn rekenprogramma,3,4,4,3,4
+mijn dictionary opslag werkt niet ik krijg keyerror bij het opzoeken,4,5,3,3,5
+ik heb voor de rekenmachine opdracht een functie geschreven maar hij deelt door nul,4,4,4,3,4
+ik wil met een for loop door een lijst gaan en de grootste waarde vinden,4,4,4,3,4
+bij het tekenen met turtle beweegt mijn figuur niet zoals ik verwacht,4,4,3,3,4
+ik snap niet waarom mijn recursieve functie een recursion error geeft,4,5,3,3,5
+mijn programma voor de temperatuur conversie geeft steeds afgeronde gehele getallen,4,4,4,4,4
+ik probeer een csv bestand in te lezen maar krijg een filenotfounderror,4,5,3,3,5
+hoe zorg ik dat mijn programma blijft vragen tot de gebruiker stop typt,4,4,4,4,4
+ik wil in mijn quiz app de score bijhouden maar hij reset elke ronde,4,4,4,4,4
+voor het practicum databases snap ik niet hoe ik een select query met where schrijf,4,4,4,3,5
+mijn html knop doet niks als ik erop klik ik heb wel een onclick toegevoegd,4,4,4,4,4
+ik heb een sorteeralgoritme geschreven maar bij grote lijsten is het heel traag,4,5,4,4,5
+mijn javascript functie geeft undefined terug terwijl ik een return heb,4,5,4,4,5
+ik wil mijn python programma opdelen in meerdere bestanden maar de import faalt,4,5,4,4,5
+voor de opdracht over binair rekenen snap ik de omzetting van decimaal naar binair niet,5,4,4,3,4
+ik heb geprobeerd mijn lijst te sorteren met bubble sort maar hij mist de laatste vergelijking,5,5,5,5,5
+mijn wachtwoord validatie functie accepteert wachtwoorden die te kort zijn ondanks mijn len check,5,5,4,4,5
+voor het eindproject wil ik data uit een api ophalen maar mijn json parsing geeft een fout,5,5,5,4,5
+ik heb mijn klasse met een constructor gemaakt maar krijg typeerror missing positional argument bij het aanmaken van een object,5,5,4,5,5
